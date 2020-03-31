@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Sdr AIS
+Exec=openplotter-sdr-ais
+Icon=openplotter-sdr-ais
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=OpenPlotter
