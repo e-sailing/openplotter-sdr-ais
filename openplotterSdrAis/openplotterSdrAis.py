@@ -51,9 +51,9 @@ class MyFrame(wx.Frame):
 		'edit': '',
 		'included': 'no',
 		'plugin': '',
-		'install': self.platform.admin+' apt install -y gqrx-sdr',
+		'install': 'python3 '+self.currentdir+'/installGqrx.py',
 		'uninstall': self.platform.admin+' apt remove -y gqrx-sdr',
-		'isinstalled': 'dpkg -l gqrx-sdr',
+		'isinstalled': 'which gqrx',
 		'settings': '',
 		}
 		self.appsDict.append(app)
@@ -67,36 +67,50 @@ class MyFrame(wx.Frame):
 		'plugin': '',
 		'install': self.platform.admin+' apt install -y welle.io',
 		'uninstall': self.platform.admin+' apt remove -y welle.io',
-		'isinstalled': 'dpkg -l welle.io',
+		'isinstalled': 'which welle-io',
+		'settings': '',
+		}
+		self.appsDict.append(app)
+		
+		app = {
+		'name': 'pulseaudio',
+		'process': '',
+		'show': "",
+		'edit': '',
+		'included': 'no',
+		'plugin': '',
+		'install': 'python3 '+self.currentdir+'/installPulseaudio.py',
+		'uninstall': self.platform.admin+' apt remove -y pulseaudio',
+		'isinstalled': 'which pulseaudio',
 		'settings': '',
 		}
 		self.appsDict.append(app)
 
 		app = {
 		'name': 'ais decoder',
-		'process': 'aisdecoder',
+		'process': 'openplotter-aisdecoder',
 		'show': '',
 		'edit': '',
 		'included': 'no',
 		'plugin': '',
-		'install': self.platform.admin+' cp data/aisdecoder /usr/local/bin',
-		'uninstall': self.platform.admin+' rm /usr/local/bin/aisdecoder',
+		'install': self.platform.admin+' python3 '+self.currentdir+'/installAisdecoder.py',
+		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallAisdecoder.py',
 		'isinstalled': '/usr/local/bin/aisdecoder',
-		'settings': '',
+		'settings': 'python3 '+self.currentdir+'/set_ais_rtl_conf.py',
 		}
 		self.appsDict.append(app)
 
 		app = {
 		'name': 'rtl_ais',
-		'process': 'rtl_ais',
+		'process': 'openplotter-rtl_ais',
 		'show': '',
 		'edit': '',
 		'included': 'no',
 		'plugin': '',
-		'install': self.platform.admin+' cp data/rtl_ais /usr/local/bin',
-		'uninstall': self.platform.admin+' rm /usr/local/bin/rtl_ais',
+		'install': self.platform.admin+' python3 '+self.currentdir+'/installRtlAis.py',
+		'uninstall': self.platform.admin+' python3 '+self.currentdir+'/uninstallRtlAis.py',
 		'isinstalled': '/usr/local/bin/rtl_ais',
-		'settings': '',
+		'settings': 'python3 '+self.currentdir+'/set_ais_rtl_conf.py',
 		}
 		self.appsDict.append(app)
 
@@ -227,8 +241,10 @@ class MyFrame(wx.Frame):
 					if os.path.isfile(isinstalled[0]):
 						installed = _('installed')
 				else:
-					if len(subprocess.check_output(i['isinstalled'].split())) > 50:
-						installed = _('installed')
+					try:
+						if len(subprocess.check_output(i['isinstalled'].split())) > 3:
+							installed = _('installed')
+					except: pass
 				
 			self.listApps.SetItem(item, 1, installed)
 			if _('not installed') == installed:
@@ -249,7 +265,7 @@ class MyFrame(wx.Frame):
 			dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
 			if dlg.ShowModal() == wx.ID_YES:
 				self.logger.Clear()
-				self.notebook.ChangeSelection(1)
+				self.notebook.ChangeSelection(2)
 				popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
 				for line in popen.stdout:
 					if not 'Warning' in line and not 'WARNING' in line:
@@ -276,7 +292,7 @@ class MyFrame(wx.Frame):
 		dlg = wx.MessageDialog(None, msg, _('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_EXCLAMATION)
 		if dlg.ShowModal() == wx.ID_YES:
 			self.logger.Clear()
-			self.notebook.ChangeSelection(1)
+			self.notebook.ChangeSelection(2)
 			popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
 			for line in popen.stdout:
 				if not 'Warning' in line and not 'WARNING' in line:
@@ -299,7 +315,8 @@ class MyFrame(wx.Frame):
 		index = self.listApps.GetFirstSelected()
 		if index == -1: return
 		apps = list(reversed(self.appsDict))
-		webbrowser.open(apps[index]['settings'], new=2)
+		command = apps[index]['settings']
+		subprocess.call(command.split())
 
 	def OnEditButton(self, e):
 		index = self.listApps.GetFirstSelected()
@@ -395,6 +412,7 @@ class MyFrame(wx.Frame):
 		if flag:
 			subprocess.call((self.platform.admin + ' systemctl enable ' + self.process[index]).split())
 		else:
+			print(self.platform.admin + ' systemctl disable ' + self.process[index])
 			subprocess.call((self.platform.admin + ' systemctl disable ' + self.process[index]).split())
 		#self.set_listSystemd()
 
@@ -415,7 +433,6 @@ class MyFrame(wx.Frame):
 		if not valid: return
 		self.onListAppsDeselected()
 		if self.listApps.GetItemBackgroundColour(i) != (200,200,200):
-			self.toolbar2.EnableTool(203,True)
 			self.toolbar2.EnableTool(205,True)
 			apps = list(reversed(self.appsDict))
 			if apps[i]['settings']: self.toolbar2.EnableTool(204,True)

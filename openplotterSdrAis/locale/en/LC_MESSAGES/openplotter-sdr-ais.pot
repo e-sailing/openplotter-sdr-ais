@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-sdr-ais\n"
-"POT-Creation-Date: 2020-03-31 08:58+0200\n"
+"POT-Creation-Date: 2020-04-04 21:13+0200\n"
 "PO-Revision-Date: 2019-11-14 17:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,138 +24,192 @@ msgstr ""
 msgid "openplotter-sdr-ais"
 msgstr ""
 
-#: openplotterSdrAis.py:107
+#: installAisdecoder.py:31 installRtlAis.py:31
+msgid "Install rtl_ais..."
+msgstr ""
+
+#: installAisdecoder.py:33 installAisdecoder.py:68 installGqrx.py:45
+#: installPulseaudio.py:41 installRtlAis.py:33 installRtlAis.py:67
+#: uninstallAisdecoder.py:38 uninstallAisdecoder.py:44 uninstallRtlAis.py:38
+#: uninstallRtlAis.py:44
+msgid "DONE"
+msgstr ""
+
+#: installAisdecoder.py:34 installAisdecoder.py:69 installGqrx.py:46
+#: installPulseaudio.py:42 installRtlAis.py:34 installRtlAis.py:68
+#: uninstallAisdecoder.py:39 uninstallAisdecoder.py:45 uninstallRtlAis.py:39
+#: uninstallRtlAis.py:45
+msgid "FAILED: "
+msgstr ""
+
+#: installAisdecoder.py:36 installRtlAis.py:36 uninstallRtlAis.py:31
+msgid "Adding rtl_ais service..."
+msgstr ""
+
+#: installGqrx.py:31 installPulseaudio.py:31
+msgid "Install gqrx..."
+msgstr ""
+
+#: openplotterSdrAis.py:121
 msgid "Sdr-Ais"
 msgstr ""
 
-#: openplotterSdrAis.py:117
+#: openplotterSdrAis.py:131
 msgid "Help"
 msgstr ""
 
-#: openplotterSdrAis.py:120 openplotterSdrAis.py:193
+#: openplotterSdrAis.py:134 openplotterSdrAis.py:207
 msgid "Settings"
 msgstr ""
 
-#: openplotterSdrAis.py:123
+#: openplotterSdrAis.py:137
 msgid "Refresh"
 msgstr ""
 
-#: openplotterSdrAis.py:131
+#: openplotterSdrAis.py:145
 msgid "Apps"
 msgstr ""
 
-#: openplotterSdrAis.py:132
+#: openplotterSdrAis.py:146
 msgid "Process status"
 msgstr ""
 
-#: openplotterSdrAis.py:187
+#: openplotterSdrAis.py:201
 msgid "Name"
 msgstr ""
 
-#: openplotterSdrAis.py:188
+#: openplotterSdrAis.py:202
 msgid "status"
 msgstr ""
 
-#: openplotterSdrAis.py:197
+#: openplotterSdrAis.py:211
 msgid "Show"
 msgstr ""
 
-#: openplotterSdrAis.py:200
+#: openplotterSdrAis.py:214
 msgid "Install"
 msgstr ""
 
-#: openplotterSdrAis.py:202
+#: openplotterSdrAis.py:216
 msgid "Uninstall"
 msgstr ""
 
-#: openplotterSdrAis.py:224 openplotterSdrAis.py:234
+#: openplotterSdrAis.py:238 openplotterSdrAis.py:250
 msgid "not installed"
 msgstr ""
 
-#: openplotterSdrAis.py:228 openplotterSdrAis.py:231
+#: openplotterSdrAis.py:242 openplotterSdrAis.py:246
 msgid "installed"
 msgstr ""
 
-#: openplotterSdrAis.py:246
+#: openplotterSdrAis.py:262
 msgid "This app can not be installed"
 msgstr ""
 
-#: openplotterSdrAis.py:248
+#: openplotterSdrAis.py:264
 msgid "Are you sure you want to install "
 msgstr ""
 
-#: openplotterSdrAis.py:248 openplotterSdrAis.py:275
+#: openplotterSdrAis.py:264 openplotterSdrAis.py:291
 msgid " and its dependencies?"
 msgstr ""
 
-#: openplotterSdrAis.py:249 openplotterSdrAis.py:276
+#: openplotterSdrAis.py:265 openplotterSdrAis.py:292
 msgid "Question"
 msgstr ""
 
-#: openplotterSdrAis.py:257
+#: openplotterSdrAis.py:273
 msgid "Installing app, please wait... "
 msgstr ""
 
-#: openplotterSdrAis.py:263
+#: openplotterSdrAis.py:279
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
 msgstr ""
 
-#: openplotterSdrAis.py:273
+#: openplotterSdrAis.py:289
 msgid "This app can not be uninstalled"
 msgstr ""
 
-#: openplotterSdrAis.py:275
+#: openplotterSdrAis.py:291
 msgid "Are you sure you want to uninstall "
 msgstr ""
 
-#: openplotterSdrAis.py:284
+#: openplotterSdrAis.py:300
 msgid "Uninstalling app, please wait... "
 msgstr ""
 
-#: openplotterSdrAis.py:291
+#: openplotterSdrAis.py:307
 msgid "Restarting Signal K server... "
 msgstr ""
 
-#: openplotterSdrAis.py:296
+#: openplotterSdrAis.py:312
 msgid "Signal K server restarted"
 msgstr ""
 
-#: openplotterSdrAis.py:320
+#: openplotterSdrAis.py:337
 msgid "inactive"
 msgstr ""
 
-#: openplotterSdrAis.py:320
+#: openplotterSdrAis.py:337
 msgid "active"
 msgstr ""
 
-#: openplotterSdrAis.py:321
+#: openplotterSdrAis.py:338
 msgid "dead"
 msgstr ""
 
-#: openplotterSdrAis.py:321
+#: openplotterSdrAis.py:338
 msgid "running"
 msgstr ""
 
-#: openplotterSdrAis.py:324
+#: openplotterSdrAis.py:341
 msgid "Autostart"
 msgstr ""
 
-#: openplotterSdrAis.py:325
+#: openplotterSdrAis.py:342
 msgid "Process"
 msgstr ""
 
-#: openplotterSdrAis.py:326
+#: openplotterSdrAis.py:343
 msgid "Status"
 msgstr ""
 
-#: openplotterSdrAis.py:332
+#: openplotterSdrAis.py:349
 msgid "Start"
 msgstr ""
 
-#: openplotterSdrAis.py:334
+#: openplotterSdrAis.py:351
 msgid "Stop"
 msgstr ""
 
-#: openplotterSdrAis.py:336
+#: openplotterSdrAis.py:353
 msgid "Restart"
+msgstr ""
+
+#: set_ais_rtl_conf.py:33
+msgid "Set Rtl-Sdr PPM"
+msgstr ""
+
+#: set_ais_rtl_conf.py:40
+msgid "(rtl-sdr frequency correction) PPM"
+msgstr ""
+
+#: set_ais_rtl_conf.py:43
+msgid "Cancel"
+msgstr ""
+
+#: set_ais_rtl_conf.py:46
+msgid "OK"
+msgstr ""
+
+#: uninstallAisdecoder.py:31
+msgid "Adding aisdecoder service..."
+msgstr ""
+
+#: uninstallAisdecoder.py:42
+msgid "remove aisdecoder..."
+msgstr ""
+
+#: uninstallRtlAis.py:42
+msgid "remove rtl_ais..."
 msgstr ""
