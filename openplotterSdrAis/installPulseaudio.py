@@ -27,19 +27,51 @@ def main():
 	language.Language(currentdir,'openplotter-sdr-ais',currentLanguage)
 
 	platform2 = platform.Platform()
+	
+	if platform2.isRPI:
+		rpitype = ''
+		try:
+			modelfile = open('/sys/firmware/devicetree/base/model', 'r', 2000)
+			rpimodel = modelfile.read()[:-1]
+			if rpimodel == 'Raspberry Pi Zero W Rev 1.1':
+				rpitype = '0W'
+			elif rpimodel == 'Raspberry Pi 2 Model B Rev 1.1':
+				rpitype = '2B'
+			elif rpimodel == 'Raspberry Pi 3 Model B Rev 1.2':
+				rpitype = '3B'
+			elif rpimodel == 'Raspberry Pi 3 Model B Plus Rev 1.3':
+				rpitype = '3B+'
+			elif rpimodel == 'Raspberry Pi 4 Model B Rev 1.1':
+				rpitype = '4B'				
+			modelfile.close()
+		except: rpimodel = ''
+	
+	if platform2.isRPI:
+		try:
+			print(_('Set Jack plug 3.5 as output on the Raspberry pi...'))
+			subprocess.call((platform2.admin+' amixer cset numid=3 1').split())
+			print(_('DONE'))
+		except Exception as e: print(_('FAILED: ')+str(e))
+
 	try:
-		print(_('Install gqrx...'))
-		subprocess.call((platform2.admin+' apt install -y pulseaudio').split())
-
-		if not os.path.isdir(conf2.home+'/.config/pulse'):
-			subprocess.call(('mkdir ' + conf2.home+'/.config/pulse').split())
-
-		file = conf2.home+'/.config/pulse/default.pa'
-		if not os.path.isfile(file):	
-			subprocess.call((' cp ' + currentdir + '/data/default.pa ' + conf2.home + '/.config/pulse/').split())
-
+		print(_('Install pulseaudio...'))
+		subprocess.call((platform2.admin+' apt install -y pulseaudio pavucontrol').split())
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
+
+	if platform2.isRPI:
+		if rpimodel == '4B':
+			try:
+				print(_('Add Raspberry pi 4 settings for pulseaudio jack plug 3.5...'))
+				if not os.path.isdir(conf2.home+'/.config/pulse'):
+					subprocess.call(('mkdir ' + conf2.home+'/.config/pulse').split())
+
+				file = conf2.home+'/.config/pulse/default.pa'
+				if not os.path.isfile(file):	
+					subprocess.call((' cp ' + currentdir + '/data/default.pa ' + conf2.home + '/.config/pulse/').split())
+
+				print(_('DONE'))
+			except Exception as e: print(_('FAILED: ')+str(e))
 
 if __name__ == '__main__':
 	main()

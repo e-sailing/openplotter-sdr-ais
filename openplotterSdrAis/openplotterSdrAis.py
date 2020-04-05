@@ -47,7 +47,7 @@ class MyFrame(wx.Frame):
 		app = {
 		'name': 'gqrx',
 		'process': '',
-		'show': "gqrx",
+		'show': '',
 		'edit': '',
 		'included': 'no',
 		'plugin': '',
@@ -61,7 +61,7 @@ class MyFrame(wx.Frame):
 		app = {
 		'name': 'welle.io',
 		'process': '',
-		'show': "welle.io",
+		'show': '',
 		'edit': '',
 		'included': 'no',
 		'plugin': '',
@@ -75,12 +75,12 @@ class MyFrame(wx.Frame):
 		app = {
 		'name': 'pulseaudio',
 		'process': '',
-		'show': "",
+		'show': '',
 		'edit': '',
 		'included': 'no',
 		'plugin': '',
 		'install': 'python3 '+self.currentdir+'/installPulseaudio.py',
-		'uninstall': self.platform.admin+' apt remove -y pulseaudio',
+		'uninstall': self.platform.admin+' apt remove -y pavucontrol pulseaudio',
 		'isinstalled': 'which pulseaudio',
 		'settings': '',
 		}
