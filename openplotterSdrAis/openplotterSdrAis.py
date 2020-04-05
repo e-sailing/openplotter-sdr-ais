@@ -339,7 +339,7 @@ class MyFrame(wx.Frame):
 
 		self.listSystemd = CheckListCtrl(self.systemd, 152)
 		self.listSystemd.InsertColumn(0, _('Autostart'), width=90)
-		self.listSystemd.InsertColumn(1, _('Process'), width=150)
+		self.listSystemd.InsertColumn(1, _('Process'), width=190)
 		self.listSystemd.InsertColumn(2, _('Status'), width=150)
 		self.listSystemd.InsertColumn(3, '  ', width=150)
 		

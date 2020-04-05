@@ -29,7 +29,8 @@ def main():
 	platform2 = platform.Platform()
 	try:
 		print(_('Install rtl_ais...'))
-		subprocess.call((' cp ' + currentdir + '/data/rtl_ais /usr/local/bin').split())
+		subprocess.call((' install -m 0755 ' + currentdir + '/data/rtl_ais /usr/local/bin/').split())
+		#subprocess.call((' cp ' + currentdir + '/data/rtl_ais /usr/local/bin').split())
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 		
@@ -44,7 +45,7 @@ def main():
 		'Type=simple\n'+
 		'User=root\n'+
 		'EnvironmentFile='+conf2.home+'/.openplotter/rtl_ais.conf\n'+
-		'ExecStart=/usr/local/bin/rtl_ais -p $PPM -P 10220\n'+
+		'ExecStart=/usr/local/bin/rtl_ais -p $PPM -P 10110\n'+
 		'Restart=on-failure\n'+
 		'RestartSec=10\n'+
 		'KillMode=process\n\n'+
@@ -61,7 +62,7 @@ def main():
 			os.chmod(file, 0o0777)
 
 		subprocess.call((' systemctl daemon-reload').split())
-		subprocess.call((' systemctl enable openplotter-rtl_ais').split())
+		#subprocess.call((' systemctl enable openplotter-rtl_ais').split())
 		subprocess.call((' systemctl restart openplotter-rtl_ais').split())
 
 		print(_('DONE'))

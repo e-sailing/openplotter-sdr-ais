@@ -29,7 +29,9 @@ def main():
 	platform2 = platform.Platform()
 	try:
 		print(_('Install rtl_ais...'))
-		subprocess.call((' cp ' + currentdir + '/data/aisdecoder /usr/local/bin').split())
+		subprocess.call((' install -m 0755 ' + currentdir + '/data/aisdecoder /usr/local/bin/').split())
+		subprocess.call((' chmod 755 ' + currentdir + '/data/aisdecoder.sh').split())
+		#subprocess.call((' cp ' + currentdir + '/data/aisdecoder /usr/local/bin').split())
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 		
@@ -62,7 +64,7 @@ def main():
 			os.chmod(file, 0o0777)
 
 		subprocess.call((' systemctl daemon-reload').split())
-		subprocess.call((' systemctl enable openplotter-aisdecoder').split())
+		#subprocess.call((' systemctl enable openplotter-aisdecoder').split())
 		subprocess.call((' systemctl restart openplotter-aisdecoder').split())
 
 		print(_('DONE'))
